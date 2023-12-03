@@ -34,10 +34,10 @@ const App = () => {
 
     async function addImages() {
       try {
+        setIsLoading(true);
+
         const data = await API.getImages(searchName, currentPage);
         const normalizedImages = API.normalizedImages(data.hits);
-  
-        setIsLoading(true);
   
         if (data.hits.length === 0) {
           return Notify.failure('Sorry, there are no images matching your search query. Please try again.', paramsForNotify);
@@ -45,7 +45,6 @@ const App = () => {
   
         setImages(prevImages => [...prevImages, ...normalizedImages]);
         setTotalPages(Math.ceil(data.totalHits / 12));
-        // setIsLoading(false);
   
       } catch (error) {
         return Notify.failure('Something went wrong! Please try again.', paramsForNotify);
