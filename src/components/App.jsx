@@ -44,8 +44,8 @@ const App = () => {
         }
   
         setImages(prevImages => [...prevImages, ...normalizedImages]);
-        setIsLoading(false);
         setTotalPages(Math.ceil(data.totalHits / 12));
+        // setIsLoading(false);
   
       } catch (error) {
         return Notify.failure('Something went wrong! Please try again.', paramsForNotify);
